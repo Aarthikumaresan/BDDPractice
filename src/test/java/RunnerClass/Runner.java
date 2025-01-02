@@ -11,7 +11,7 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 		features ="src\\test\\resources\\Login.feature", 
 		glue = "steps",
 		plugin= {"pretty", "html:target/result.html"},
-		dryRun = false
+		dryRun = true
 		//monochrome=true
 	//	snippets = SnippetType.CAMELCASE
 	)

@@ -6,6 +6,7 @@ import java.time.Duration;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -39,16 +40,18 @@ public class StepDefinition {
 		Thread.sleep(1000);
 	}
 	
+	
+	   @Then("the user should be redirected to the dashboard")
+	public void the_user_should_be_redirected_to_the_dashboard() {
+
+		   WebElement logout_btn = driver.findElement(By.xpath("//button[text()='Logout']"));
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", logout_btn);
+			System.out.println("Login Successful");
+				 
+	}
 	@Then("quit browser1")
 	public void quit_browser1() {
 	    driver.quit();
-	}
-
-	@Then("the user should be redirected to the dashboard")
-	public void the_user_should_be_redirected_to_the_dashboard() {
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2000));
-		driver.findElement(By.xpath("//button[text()='Logout']")).click();	 
 	}
 
 	@When("the user enters invalid username and password")
@@ -61,7 +64,6 @@ public class StepDefinition {
 
 		WebElement errorMsg = driver.findElement(By.xpath("//p[text()='Invalid username or password']"));
 		String ActualError = errorMsg.getText();
-		
 		System.out.println(ActualError);
 	}
 
